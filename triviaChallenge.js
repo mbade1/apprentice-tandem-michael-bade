@@ -1,7 +1,7 @@
 //global vars
 let questionContainer = document.querySelector('.question'),
-  answers = document.querySelector('.answers'),
-  answer = document.querySelectorAll('.answer'),
+  answerContainer = document.querySelector('.answers'),
+  answers = document.querySelectorAll('.answer'),
   nextQuestion = document.querySelector('.next-question'),
   thisRoundOfQuestions = [];
   currentIndex = 0;
@@ -51,14 +51,22 @@ function loadInAnswers(currentIndex) {
   allAnswers.push(incorrectAnswersForThisQuestion);
   allAnswers.push(correctAnswersForThisQuestion);
   let allAnswersFlattened = allAnswers.flat(1);
+  debugger
+  //shuffle the answers
   for (let i = allAnswersFlattened.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     let temp = allAnswersFlattened[i];
     allAnswersFlattened[i] = allAnswersFlattened[j]
-    allAnswersFlattened[j] = temp;
+    allAnswersFlattened[j] = temp;    
   }
+  //add each answer to the answerContainer
+  for (let i = 0; i < allAnswersFlattened.length; i++) {
+    answers[i].innerHTML = '';
+    answers[i].innerHTML = allAnswersFlattened[i]
+  }
+
+  allAnswersFlattened;
   
-  debugger
 }
 
 function questionsForRound(thisRoundOfQuestions) {
