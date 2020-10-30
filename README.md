@@ -7,8 +7,10 @@
 // any known issues or complexity we should look out for, and any additional features you would like to have added to make your 
 // trivia app even more awesome.
 // Before you begin, familiarity with the following concepts will be helpful:
-// • • •
-//  Arrays and loops Data manipulation Parsing JSON
+
+// Arrays and loops 
+// Data manipulation 
+// Parsing JSON
 
 //Assumptions:
 // A round of trivia has 10 Questions
@@ -28,3 +30,15 @@
 // We love unit tests and automated test coverage in our projects. Well-tested code provides 
 // documentation for other developers and prevents future regressions (bugs introduced after a 
 // change) among other things. If you would like a challenge, consider adding unit tests to display your commitment to quality code.
+
+
+
+//Chrome extensions to communicate with JSON and disable CORS:
+
+CORS Unblock
+https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino?hl=en
+
+Web Server for Chrome (for JSON file)
+https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb/related?hl=en
+
+//After communicating with server, started with a static layout: (b/w pic on desktop)
