@@ -13,18 +13,21 @@
 // Parsing JSON
 
 //Assumptions:
-// A round of trivia has 10 Questions
-// All questions are multiple-choice questions
-// Your score does not need to update in real time
-// Results can update on form submit, button click, or any interaction you choose
-// We will provide you with the trivia data such as the questions, correct and incorrect answers via a JSON file
+// A round of trivia has 10 Questions X
+// All questions are multiple-choice questions X
+// Your score does not need to update in real time X 
+// Results can update on form submit, button click, or any interaction you choose X
+// We will provide you with the trivia data such as the questions, correct and incorrect answers via a JSON file X
 
 //Acceptance Criteria
-// A user can view questions.
-// Questions with their multiple choice options must be displayed one at a time. Questions should not repeat in a round.
-// A user can select only 1 answer out of the 4 possible answers.
-// The correct answer must be revealed after a user has submitted their answer A user can see the score they received at the end of the round
+// A user can view questions. X
+// Questions with their multiple choice options must be displayed one at a time. Questions should not repeat in a round. X (only one question is shown at a time and no repeats)
+// A user can select only 1 answer out of the 4 possible answers. X (once selected, next question is rendered)
+// The correct answer must be revealed after a user has submitted their answer X
+// A user can see the score they received at the end of the round X
 
+
+TOMORROW: MAKE TESTS
 // Additional Considerations
 // Tandem's first core value is "Ship Quality Work." 
 // We love unit tests and automated test coverage in our projects. Well-tested code provides 
