@@ -56,28 +56,10 @@ To test your trivia, [click here](https://mbade1.github.io/apprentice-tandem-mic
 
 Otherwise, to install and test this repository on your own machine, proceed with the following steps:
 
-STEP 1: Install Chrome Extensions
-Before cloning down this repository, add the following extensions to your Chrome browser:
-1. [Web Server for Chrome](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb/related?hl=en)
-2. [CORS Unblock](https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino?hl=en)
-
-The "Web Server for Chrome" serves web pages from a local folder over the network, using HTTP. The CORS Unblock extension allows for CORS to be disabled when making fetch request to this repo's JSON file. 
-
-STEP 2: Set Up Web Server for Chrome
-1. Click on the above linke for "Web Server for Chrome"
-2. On this web page, click on the button "Launch App"
-3. Start your app here by selecting "Choose Folder", navigate to apprentice-tandem-michael-bade/Apprentice_TandemFor400_Data.json, and select this file.
-4. After selecting this JSON file, make sure your Web Server has started (the "Web Server for Chrome" should state "Web Server: STARTED")
-
-STEP 3: Clone this repository and run CORS Unblock extension
 1. Clone down this repository to your local machine.
 2. cd into this repository: ```$ cd apprentice-tandem-michael-bade```
 3. Open index html with this command: ```$ open index.html```
-4. On this page, select the "CORS Unblock" extension.
-5. Your app should be up and running!
-
-
-
+4. Your app should be up and running!
 
 TESTS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
