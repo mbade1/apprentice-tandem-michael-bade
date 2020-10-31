@@ -1,4 +1,4 @@
-//global vars
+//global vars, DOM selectors and event listeners
 let questionContainer = document.querySelector(".question"),
   answerContainer = document.querySelector(".answer-container"),
   answers = document.querySelectorAll(".answer"),
@@ -11,20 +11,21 @@ reset.addEventListener('click', function() {location.reload()});
 
 //Load in the questions
 function fetchQuestions(
-  questionsAndAnswersJSON = "http://127.0.0.1:8887/Apprentice_TandemFor400_Data.json"
+  questionsAndAnswersJSON = "https://mbade1.github.io/apprentice-tandem-michael-bade/Apprentice_TandemFor400_Data.json"
 ) {
   fetch(questionsAndAnswersJSON)
     .then((response) => response.json())
-    .then((questionsAndAnswers) => shuffleQuestions(questionsAndAnswers));
+    .then((questionsAndAnswers) => shuffleQuestions(questionsAndAnswers))
+    .catch(error => alert(error + ' Please start server through: https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb/related?hl=en'))
 };
 
 //shuffle the questions and slice 10 questions
 function shuffleQuestions(questionsAndAnswers) {
   for (let i = questionsAndAnswers.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
-    let temp = questionsAndAnswers[i];
+    let holder = questionsAndAnswers[i];
     questionsAndAnswers[i] = questionsAndAnswers[j];
-    questionsAndAnswers[j] = temp;
+    questionsAndAnswers[j] = holder;
   }
   let sliced = questionsAndAnswers.slice(-10);
   thisRoundOfQuestions = sliced;
@@ -106,12 +107,10 @@ function checkForAnswer(indexedAnswer) {
 }
 
 function truthyOrNot(boolean) {
-  // This function adds a div element to the page
-  // Used to see if it was correct or false
   let truthyOrNotDiv = document.createElement("div"),
     truthyOrNotDivInnerText = document.createTextNode(`Question #${currentIndex + 1}: `);
+
   truthyOrNotDiv.appendChild(truthyOrNotDivInnerText);
-  debugger
 
   if (boolean) {
     truthyOrNotDiv.className += "truthy";
@@ -122,7 +121,7 @@ function truthyOrNot(boolean) {
     score += 100;
     total.innerHTML = `Score: <strong>${score}</strong> points`;
   } else {
-    let correctAnswerForThisQuestion = document.createTextNode(`Sorry! The correct answer was: ${thisRoundOfQuestions[currentIndex].correct}`)
+    let correctAnswerForThisQuestion = document.createTextNode(`Sorry! The correct answer was: ${thisRoundOfQuestions[currentIndex].correct}`);
     truthyOrNotDiv.className += "false";
     truthyOrNotDiv.setAttribute('data-aos', 'fade-up');
     truthyOrNotDiv.appendChild(correctAnswerForThisQuestion);
@@ -130,5 +129,5 @@ function truthyOrNot(boolean) {
   }
 }
 
-//call this function to bring in questions
+//call fetchQuestions to render questions
 fetchQuestions()
