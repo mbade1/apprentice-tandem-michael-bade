@@ -1,31 +1,65 @@
+body {
+    font-family: Apercu-Mono,monospace;
+    background-color: #FFF4E6;
+}
+
 .container {
     text-align: center;
 }
 
+.trivia-header {
+    height: 25%;
+    background-color: #FFF4E6;
+}
+
 .question {
-    border: 2px solid blue;
     padding: 10px;
 }
 
 .answer {
     cursor: pointer;
-    border: 2px solid red;
     padding: 10px;
+    margin: 10px;
+}
+
+.answer:hover {
+    background-color: #2C4023;
+    color: #C4C9C0;
+}
+
+.answer-container {
+    background-color: #E4F2E4;
+    box-shadow:0px 0px 50px  pink;  
 }
 
 .next-question {
-    border: 2px solid green;
     padding: 10px;
 }
 
 .truthy {
-    width: 100px;
-    height: 50px;
-    background-color: green;
+    float: left;
+    width: 30%;
+    margin: 1.5%;
+    height: auto;
+    background-color: #2C4023;
+    color: #C4C9C0;
 }
 
 .false {
-    width: 100px;
-    height: 50px;
-    background-color: red;
+    float: left;
+    width: 30%;
+        margin: 1.5%;
+    height: auto;
+    background-color: #EDAD9E;
+    color: #726e6e;
+}
+
+.reset {
+    display: none;
+    font-size: 2em;
+    position: absolute;
+    bottom: 15%;
+    left: 42%;
+    background-color: #FDDF00;
+    cursor: pointer;
 }

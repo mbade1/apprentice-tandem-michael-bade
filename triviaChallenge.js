@@ -6,15 +6,17 @@ let questionContainer = document.querySelector(".question"),
   thisRoundOfQuestions = [],
   total = document.querySelector(".total");
 (currentIndex = 0), (score = 0);
+let reset = document.querySelector('.reset');
+reset.addEventListener('click', function() {location.reload()});
 
-//IIFE to load in the questions
-(function fetchQuestions(
+//Load in the questions
+function fetchQuestions(
   questionsAndAnswersJSON = "http://127.0.0.1:8887/Apprentice_TandemFor400_Data.json"
 ) {
   fetch(questionsAndAnswersJSON)
     .then((response) => response.json())
     .then((questionsAndAnswers) => shuffleQuestions(questionsAndAnswers));
-})();
+};
 
 //shuffle the questions and slice 10 questions
 function shuffleQuestions(questionsAndAnswers) {
@@ -58,6 +60,7 @@ function loadInAnswers(currentIndex) {
   answerContainer.innerHTML = "";
   for (let i = 0; i < allAnswersFlattened.length; i++) {
     let individualAnswer = document.createElement("div");
+    individualAnswer.setAttribute('data-aos', 'flip-up');
     individualAnswer.className = "answer";
     let answerText = document.createTextNode(allAnswersFlattened[i]);
     individualAnswer.appendChild(answerText);
@@ -85,9 +88,20 @@ function checkForAnswer(indexedAnswer) {
     loadInQuestion(currentIndex);
     loadInAnswers(currentIndex);
   } else {
-    questionContainer.innerHTML = "Done";
-    answerContainer.innerHTML = score;
+    answerContainer.innerHTML = `<h2> Final Score: ${score} points</h2>`;
+    answerContainer.style = "font-size: 2em;"
+    questionContainer.style = "font-size: 2em;"
     total.innerHTML = "";
+    if (score <= 400) {
+      questionContainer.innerHTML = "Better luck next time!"
+    } else if (score > 400 && score <= 700) {
+      questionContainer.innerHTML = "Wow, not bad!"
+    } else if (score > 700 && score <= 900) {
+      questionContainer.innerHTML = "Great job!"
+    } else {
+      "Fantastic! You got a perfect score!!"
+    }
+    reset.style = "display: block";
   }
 }
 
@@ -95,21 +109,26 @@ function truthyOrNot(boolean) {
   // This function adds a div element to the page
   // Used to see if it was correct or false
   let truthyOrNotDiv = document.createElement("div"),
-    truthyOrNotDivInnerText = document.createTextNode(currentIndex + 1);
+    truthyOrNotDivInnerText = document.createTextNode(`Question #${currentIndex + 1}: `);
   truthyOrNotDiv.appendChild(truthyOrNotDivInnerText);
   debugger
 
   if (boolean) {
     truthyOrNotDiv.className += "truthy";
+    truthyOrNotDiv.setAttribute('data-aos', 'fade-up');
     let correctAnswerForThisQuestion = document.createTextNode(`Nice! Your correct answer was: ${thisRoundOfQuestions[currentIndex].correct}`)
     truthyOrNotDiv.appendChild(correctAnswerForThisQuestion);
     correctOrNot.appendChild(truthyOrNotDiv);
     score += 100;
-    total.innerText = score;
+    total.innerHTML = `Score: <strong>${score}</strong> points`;
   } else {
     let correctAnswerForThisQuestion = document.createTextNode(`Sorry! The correct answer was: ${thisRoundOfQuestions[currentIndex].correct}`)
     truthyOrNotDiv.className += "false";
+    truthyOrNotDiv.setAttribute('data-aos', 'fade-up');
     truthyOrNotDiv.appendChild(correctAnswerForThisQuestion);
     correctOrNot.appendChild(truthyOrNotDiv);
   }
 }
+
+//call this function to bring in questions
+fetchQuestions()

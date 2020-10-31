@@ -2,12 +2,13 @@
 <html>
 <head>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 </head>
 <body>
 <div class="container">
     <div class="total">
-
+        Score: <strong>0</strong> points
     </div>
     <div class="trivia-header">
         <h1>Tandem Trivia!</h1>
@@ -22,9 +23,17 @@
     <div class="correct-or-not">
 
     </div>
+
+    <div class="reset">
+        Play again?
+    </div>
 </div>
 
 
 <script src="triviaChallenge.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
 </html>
