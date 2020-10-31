@@ -1,3 +1,31 @@
 .container {
     text-align: center;
 }
+
+.question {
+    border: 2px solid blue;
+    padding: 10px;
+}
+
+.answer {
+    cursor: pointer;
+    border: 2px solid red;
+    padding: 10px;
+}
+
+.next-question {
+    border: 2px solid green;
+    padding: 10px;
+}
+
+.truthy {
+    width: 100px;
+    height: 50px;
+    background-color: green;
+}
+
+.false {
+    width: 100px;
+    height: 50px;
+    background-color: red;
+}

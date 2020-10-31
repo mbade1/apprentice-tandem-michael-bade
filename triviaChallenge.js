@@ -1,14 +1,12 @@
 //global vars
 let questionContainer = document.querySelector('.question'),
-  answerContainer = document.querySelector('.answers'),
+  answerContainer = document.querySelector('.answer-container'),
   answers = document.querySelectorAll('.answer'),
-  nextQuestion = document.querySelector('.next-question'),
-  thisRoundOfQuestions = [];
-  currentIndex = 0;
-
-// document.addEventListener('DOMContentLoaded', (event) => {
-//   fetchQuestions()
-// })
+  correctOrNot = document.querySelector('.correct-or-not'),
+  thisRoundOfQuestions = [],
+  total = document.querySelector('.total');
+  currentIndex = 0,
+  score = 0;
 
 //IIFE to load in the questions
 (function fetchQuestions(questionsAndAnswersJSON = 'http://127.0.0.1:8887/Apprentice_TandemFor400_Data.json') {
@@ -28,7 +26,7 @@ function shuffleQuestions(questionsAndAnswers) {
   thisRoundOfQuestions = sliced;
   loadInQuestion(currentIndex);
   loadInAnswers(currentIndex);
-  questionsForRound(sliced);
+  // questionsForRound(sliced);
 }
 
 //example JSON data:
@@ -51,7 +49,7 @@ function loadInAnswers(currentIndex) {
   allAnswers.push(incorrectAnswersForThisQuestion);
   allAnswers.push(correctAnswersForThisQuestion);
   let allAnswersFlattened = allAnswers.flat(1);
-  debugger
+
   //shuffle the answers
   for (let i = allAnswersFlattened.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
@@ -59,39 +57,57 @@ function loadInAnswers(currentIndex) {
     allAnswersFlattened[i] = allAnswersFlattened[j]
     allAnswersFlattened[j] = temp;    
   }
+
   //add each answer to the answerContainer
+  answerContainer.innerHTML = '';
   for (let i = 0; i < allAnswersFlattened.length; i++) {
-    answers[i].innerHTML = '';
-    answers[i].innerHTML = allAnswersFlattened[i]
+    let individualAnswer = document.createElement('div');
+    individualAnswer.className = 'answer';
+    let answerText = document.createTextNode(allAnswersFlattened[i]);
+    individualAnswer.appendChild(answerText);
+    individualAnswer.addEventListener("click", checkForAnswer.bind(this, allAnswersFlattened[i]));
+    answerContainer.appendChild(individualAnswer);
   }
+  // allAnswersFlattened;
+}
 
-  allAnswersFlattened;
+function checkForAnswer(indexedAnswer) {
+  let responseFromUser = indexedAnswer;
+  let correctAnswer = thisRoundOfQuestions[currentIndex].correct;
+    
+  if (responseFromUser === correctAnswer) {
+    truthyOrNot(true);             
+  } else {
+    truthyOrNot(false);                        
+  }
+    
+  if (currentIndex < thisRoundOfQuestions.length - 1) {
+    currentIndex += 1;  
+    loadInQuestion(currentIndex);
+    loadInAnswers(currentIndex);
+  } else {
+    questionContainer.innerHTML = 'Done';
+    answerContainer.innerHTML = score;
+    total.innerHTML = '';
+  }                      
+}
+
+function truthyOrNot(boolean) {
+  // This function adds a div element to the page
+  // Used to see if it was correct or false
   
-}
-
-function questionsForRound(thisRoundOfQuestions) {
-  console.log(thisRoundOfQuestions)
-  answers.innerHTML = '';
-  for (let i = 0; i < thisRoundOfQuestions.length; i++) {
-    let newQuestionDiv = document.createElement('div');
-    let text = document.createTextNode(thisRoundOfQuestions[i]);
-
-    newQuestionDiv.appendChild(text);
-    // console.log('these are the questions for ' + i + ':')
-    // console.log(slicedquestionsAndAnswers[i])
-    // console.log('')
+  let truthyOrNotDiv = document.createElement('div'),
+  truthyOrNotDivInnerText = document.createTextNode(currentIndex + 1);
+    
+  truthyOrNotDiv.appendChild(truthyOrNotDivInnerText);
+    
+    if (boolean) {
+      truthyOrNotDiv.className += 'truthy';
+      correctOrNot.appendChild(truthyOrNotDiv);
+      score += 100;
+      total.innerText = score;
+    } else {
+      truthyOrNotDiv.className += 'false';
+      correctOrNot.appendChild(truthyOrNotDiv);
+    }
   }
-}
-
-
-
-
-
-
-
-
-
-//Flow: 
-  //fetch call or pass in Apprentice_TandemFor400_Data.json 
-  //Iterate over the passed in 
-//Use a class constructor to pas
