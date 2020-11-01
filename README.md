@@ -16,6 +16,7 @@ To make this app more awesome in the future, I would love to add the features of
 
 To incorporate these features, I would need to set up a database which would receive fetch requests from the frontend to add information. For instance, at the end of each trivia round, that Users' score would be POST-ed to the database. This information could be saved, and on the frontend, Users can see a leaderboard with the highest number of points. So, the database would store each User as an individual key, along with their (encrypted) password, an array of scores, and array of objects with new questions to add. Something like:
 
+```javascript
 Users: [
     {
         "name": "Mike",
@@ -40,7 +41,7 @@ Users: [
         "name": "Sarah"..... (so on and so forth...)
     }
 ]
-
+```
 As for the 10 second countdown timer, a timeToAnswer variable can be set at 10, and a setTimeout function could be incorporated to update that timer every second. Once timeToAnswer === 0, a new div is renderd, saying "Ran out of time," and the next question is shown.
 
 ## Prompt: Tandem for 400!
