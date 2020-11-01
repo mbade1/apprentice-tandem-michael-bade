@@ -6,7 +6,42 @@ Welcome to Tandem Trivia, an app to help you get better at trivia, and see if yo
 
 This app is built using vanilla JavaScript, HTML, and CSS. Before beginning this project, I considered using React but decided to use vanilla JavaScript instead. Before starting this project, I planned out the flow from beginning a round of trivia, to completion:
 
-1. 
+1. When User goes to the URL for this app, the app fetches the Apprentice_Tandemfor400_Data.json data
+2. When fetched, the questions are randomized, and 10 questions are selected from the list.
+3. The User is presented with the first question and its 4 options to answer.
+4. As the User answers each question, he or she is shown whether or not they got the answer correct, along with the correct answer. If they answer the question correctly, 100 points are added to their score. If they answer incorrectly, 0 points are added to their score.
+5. After 10 questions have been answered, the Users' final score and correct answers are shown. The User has an option to play again.
+
+To make this app more awesome in the future, I would love to add the features of having an all-time score leader board and option for Users to input new questions to the trivia database. If the database were to expand large enough, a "category" option would be great as well, such as "Sports", "Movies", "Random" (where Random would shuffle 10 random trivia questions for the user). Another cool feature would be adding a timer for each question to be answered within 10 seconds.
+
+To incorporate these features, I would need to set up a database which would receive fetch requests from the frontend to add information. For instance, at the end of each trivia round, that Users' score would be POST-ed to the database. This information could be saved, and on the frontend, Users can see a leaderboard with the highest number of points. So, the database would store each User as an individual key, along with their (encrypted) password, an array of scores, and array of objects with new questions to add. Something like:
+
+Users: [
+    {
+        "name": "Mike",
+        "password": "a0sd9fj0ianweipfh0awhef",
+        "scores": 
+            [
+                0: 800,
+                1: 900,
+                2: 400,
+                3: 500 
+            ],
+        "inputtedQuestions":
+            [
+                {
+                    "question": "What year did the USA land on the moon?",
+                    "incorrect": ["1940", "1971", "1967"],
+                    "correct": "1969"
+                },
+            ]
+    },
+    {
+        "name": "Sarah"..... (so on and so forth...)
+    }
+]
+
+As for the 10 second countdown timer, a timeToAnswer variable can be set at 10, and a setTimeout function could be incorporated to update that timer every second. Once timeToAnswer === 0, a new div is renderd, saying "Ran out of time," and the next question is shown.
 
 ## Prompt: Tandem for 400!
 
@@ -30,18 +65,18 @@ Data manipulation
 Parsing JSON
 
 ## Assumptions
-[x] A round of trivia has 10 Questions.
-[x] All questions are multiple-choice questions.
-[x] Your score does not need to update in real time.
-[x] Results can update on form submit, button click, or any interaction you choose.
-[x] We will provide you with the trivia data such as the questions, correct and incorrect answers via a JSON file. 
+- A round of trivia has 10 Questions.
+- All questions are multiple-choice questions.
+- Your score does not need to update in real time.
+- Results can update on form submit, button click, or any interaction you choose.
+- We will provide you with the trivia data such as the questions, correct and incorrect answers via a JSON file. 
 
 ## Acceptance Criteria
-[x] A user can view questions. 
-[x] Questions with their multiple choice options must be displayed one at a time. Questions should not repeat in a round.
-[x] A user can select only 1 answer out of the 4 possible answers. 
-[x] The correct answer must be revealed after a user has submitted their answer.
-[x] A user can see the score they received at the end of the round.
+- A user can view questions. 
+- Questions with their multiple choice options must be displayed one at a time. Questions should not repeat in a round.
+- A user can select only 1 answer out of the 4 possible answers. 
+- The correct answer must be revealed after a user has submitted their answer.
+- A user can see the score they received at the end of the round.
 
 ## Additional Considerations
 
@@ -50,9 +85,7 @@ We love unit tests and automated test coverage in our projects. Well-tested code
 
 ## Installation
 
-To see a walk-through of this app, [click here]().
-
-To test your trivia, [click here](https://mbade1.github.io/apprentice-tandem-michael-bade/)
+To go to the live site and test your trivia, [click here](https://mbade1.github.io/apprentice-tandem-michael-bade/)
 
 Otherwise, to install and test this repository on your own machine, proceed with the following steps:
 
@@ -60,15 +93,3 @@ Otherwise, to install and test this repository on your own machine, proceed with
 2. cd into this repository: ```$ cd apprentice-tandem-michael-bade```
 3. Open index html with this command: ```$ open index.html```
 4. Your app should be up and running!
-
-TESTS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-//Chrome extensions to communicate with JSON and disable CORS:
-
-CORS Unblock
-
-
-Web Server for Chrome (for JSON file)
-
-//After communicating with server, started with a static layout: (b/w pic on desktop)
